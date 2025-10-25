@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewClick.API", "NewClick.API\NewClick.API.csproj", "{43FF31E7-C258-E361-2B19-D82D159CB086}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43FF31E7-C258-E361-2B19-D82D159CB086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43FF31E7-C258-E361-2B19-D82D159CB086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43FF31E7-C258-E361-2B19-D82D159CB086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43FF31E7-C258-E361-2B19-D82D159CB086}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7E56EEA-DBF4-4791-AFC5-1DFB3123758E}
+	EndGlobalSection
+EndGlobal
