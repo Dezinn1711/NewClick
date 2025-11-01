@@ -35,8 +35,8 @@ public class AppDbContext : IdentityDbContext<Usuario>
             },
             new IdentityRole() {
                Id = "ddf093a6-6cb5-4ff7-9a64-83da34aee005",
-               Name = "Usuário",
-               NormalizedName = "USUÁRIO"
+               Name = "Cliente",
+               NormalizedName = "CLIENTE"
             },
         ];
         builder.Entity<IdentityRole>().HasData(roles);
@@ -46,14 +46,14 @@ public class AppDbContext : IdentityDbContext<Usuario>
         List<Usuario> usuarios = [
             new Usuario(){
                 Id = "ddf093a6-6cb5-4ff7-9a64-83da34aee005",
-                Email = "gallojunior@gmail.com",
-                NormalizedEmail = "GALLOJUNIOR@GMAIL.COM",
-                UserName = "gallouunior@gmail.com",
-                NormalizedUserName = "GALLOJUNIOR@GMAIL.COM",
+                Email = "andreluiz@gmail.com",
+                NormalizedEmail = "ANDRELUIZ@GMAIL.COM",
+                UserName = "andreluiz@gmail.com",
+                NormalizedUserName = "ANDRELUIZ@GMAIL.COM",
                 LockoutEnabled = true,
                 EmailConfirmed = true,
-                Nome = "José Antonio Gallo Junior",
-                DataNascimento = DateTime.Parse("05/08/1981"),
+                Nome = "André Luiz",
+                DataNascimento = DateTime.Parse("17/11/2005"),
                 Foto = "/img/usuarios/avatar.png"
             }
         ];

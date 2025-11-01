@@ -1,5 +1,6 @@
 using System.Text;
 using NewClick.API.Data;
+using NewClick.API.Middleware;
 using NewClick.API.Models;
 using NewClick.API.Services.Implementations;
 using NewClick.API.Services.Interfaces;
@@ -142,9 +143,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles(); 
+app.UseStaticFiles();
 
 app.UseCors("AllowAll");
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();

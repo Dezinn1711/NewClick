@@ -1,8 +1,10 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewClick.API", "NewClick.API\NewClick.API.csproj", "{43FF31E7-C258-E361-2B19-D82D159CB086}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewClick.UI", "NewClick.UI\NewClick.UI.csproj", "{61A1BBB3-9CF4-4849-AC21-55D2A02A7EDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,6 +16,10 @@ Global
 		{43FF31E7-C258-E361-2B19-D82D159CB086}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43FF31E7-C258-E361-2B19-D82D159CB086}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43FF31E7-C258-E361-2B19-D82D159CB086}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61A1BBB3-9CF4-4849-AC21-55D2A02A7EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61A1BBB3-9CF4-4849-AC21-55D2A02A7EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61A1BBB3-9CF4-4849-AC21-55D2A02A7EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61A1BBB3-9CF4-4849-AC21-55D2A02A7EDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

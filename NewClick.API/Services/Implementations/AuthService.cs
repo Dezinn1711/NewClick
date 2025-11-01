@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using NewClick.API.DTOs;
 using NewClick.API.Services.Interfaces;
 using NewClick.API.Models;
+using NewClick.API.Helpers;
 
 namespace NewClick.API.Services.Implementations;
 
@@ -30,7 +31,7 @@ public class AuthService : IAuthService
         var existingUser = await _userManager.FindByEmailAsync(registerDto.Email);
         if (existingUser != null)
         {
-            return null;
+            throw new ArgumentException("Email já está em uso.");
         }
 
         // Salvar a foto se existir
@@ -46,7 +47,7 @@ public class AuthService : IAuthService
             Email = registerDto.Email,
             Nome = registerDto.Nome,
             DataNascimento = registerDto.DataNascimento,
-            Foto = fotoPath // Armazena "img/usuarios/guid.ext"
+            Foto = fotoPath
         };
 
         var result = await _userManager.CreateAsync(user, registerDto.Senha);
@@ -54,18 +55,23 @@ public class AuthService : IAuthService
         {
             if (fotoPath != null)
                 await _fileService.DeleteFileAsync(fotoPath);
-            return null;
+
+            var errors = string.Join(", ", result.Errors.Select(e => TranslateIdentityErrors.TranslateErrorMessage(e.Code)));
+            throw new ArgumentException($"Falha ao criar usuário: {errors}");
         }
 
-        var token = _jwtService.GenerateToken(user);
+        await _userManager.AddToRoleAsync(user, "Cliente");
+
         var userDto = new UserDto
         {
             Id = user.Id,
             Email = user.Email,
             Nome = user.Nome,
             DataNascimento = user.DataNascimento,
-            Foto = fotoPath != null ? _fileService.GetFileUrl(fotoPath) : null
+            Foto = fotoPath != null ? _fileService.GetFileUrl(fotoPath) : null,
+            Perfil = string.Join(", ", await _userManager.GetRolesAsync(user))
         };
+        var token = _jwtService.GenerateToken(userDto);
 
         return new AuthResponseDto
         {
@@ -80,24 +86,25 @@ public class AuthService : IAuthService
         var user = await _userManager.FindByEmailAsync(loginDto.Email);
         if (user == null)
         {
-            return null;
+            throw new UnauthorizedAccessException("Usuário e/ou Senha Inválidos.");
         }
 
         var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Senha, false);
         if (!result.Succeeded)
         {
-            return null;
+            throw new UnauthorizedAccessException("Usuário e/ou Senha Inválidos.");
         }
 
-        var token = _jwtService.GenerateToken(user);
         var userDto = new UserDto
         {
             Id = user.Id,
             Email = user.Email,
             Nome = user.Nome,
             DataNascimento = user.DataNascimento,
-            Foto = !string.IsNullOrEmpty(user.Foto) ? _fileService.GetFileUrl(user.Foto) : null
+            Foto = !string.IsNullOrEmpty(user.Foto) ? _fileService.GetFileUrl(user.Foto) : null,
+            Perfil = string.Join(", ", await _userManager.GetRolesAsync(user))
         };
+        var token = _jwtService.GenerateToken(userDto);
 
         return new AuthResponseDto
         {
@@ -112,7 +119,7 @@ public class AuthService : IAuthService
         var user = await _userManager.FindByIdAsync(userId);
         if (user == null)
         {
-            return null;
+            throw new KeyNotFoundException("Usuário não encontrado.");
         }
 
         return new UserDto
@@ -121,7 +128,8 @@ public class AuthService : IAuthService
             Email = user.Email,
             Nome = user.Nome,
             DataNascimento = user.DataNascimento,
-            Foto = !string.IsNullOrEmpty(user.Foto) ? _fileService.GetFileUrl(user.Foto) : null
+            Foto = !string.IsNullOrEmpty(user.Foto) ? _fileService.GetFileUrl(user.Foto) : null,
+            Perfil = string.Join(", ", await _userManager.GetRolesAsync(user))
         };
     }
 }

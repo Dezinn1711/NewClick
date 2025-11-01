@@ -3,7 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using NewClick.API.Services.Interfaces;
-using NewClick.API.Models;
+using NewClick.API.DTOs;
 
 namespace NewClick.API.Services.Implementations;
 
@@ -16,7 +16,7 @@ public class JwtService : IJwtService
         _configuration = configuration;
     }
 
-    public string GenerateToken(Usuario user)
+    public string GenerateToken(UserDto user)
     {
         var jwtSettings = _configuration.GetSection("JwtSettings");
         var secretKey = jwtSettings["SecretKey"];
@@ -32,7 +32,8 @@ public class JwtService : IJwtService
             new Claim(ClaimTypes.NameIdentifier, user.Id),
             new Claim(ClaimTypes.Email, user.Email!),
             new Claim(ClaimTypes.Name, user.Nome),
-            // new Claim("foto", user.Foto ?? "/img/usuarios/no-photo.png"),
+            new Claim("foto", user.Foto ?? "/img/usuarios/no-photo.png"),
+            new Claim(ClaimTypes.Role, user.Perfil),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64)
         };

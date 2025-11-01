@@ -1,8 +1,8 @@
-using NewClick.API.Models;
+using NewClick.API.DTOs;
 
 namespace NewClick.API.Services.Interfaces;
 
 public interface IJwtService
 {
-    string GenerateToken(Usuario user);
+    string GenerateToken(UserDto user);
 }
