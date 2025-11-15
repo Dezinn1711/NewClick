@@ -6,7 +6,7 @@ namespace NewClick.API.Models;
     public class Categoria
 {
     [Key]
-    public int CategoriaId { get; set; }
+    public int Id { get; set; }
 
     [StringLength(50)]
     [Required(ErrorMessage = "O nome é obrigatório")]

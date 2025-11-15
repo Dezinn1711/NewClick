@@ -1,9 +1,6 @@
 using System.Text;
 using NewClick.API.Data;
-using NewClick.API.Middleware;
 using NewClick.API.Models;
-using NewClick.API.Services.Implementations;
-using NewClick.API.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -67,13 +64,7 @@ builder.Services.AddAuthentication(options =>
 // Adicionar a Autorização
 builder.Services.AddAuthorization();
 
-// Serviço de Arquivos
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<IFileService, FileService>();
-
-// Registro dos Serviços Customizados
-builder.Services.AddScoped<IJwtService, JwtService>();
-builder.Services.AddScoped<IAuthService, AuthService>();
+// Registro dos Serviços 
 
 // Configuração do CORS
 builder.Services.AddCors(options =>
@@ -143,11 +134,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles();
-
 app.UseCors("AllowAll");
-
-app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
