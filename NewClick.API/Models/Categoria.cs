@@ -7,6 +7,7 @@ namespace NewClick.API.Models;
 {
     [Key]
     public int Id { get; set; }
+    public int CategoriaId { get; set; }
 
     [StringLength(50)]
     [Required(ErrorMessage = "O nome é obrigatório")]
@@ -17,4 +18,5 @@ namespace NewClick.API.Models;
 
     [StringLength(26)]
     public string Cor { get; set; } = "rgba(0,0,0,1)";
+
 }

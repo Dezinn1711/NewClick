@@ -54,7 +54,7 @@ public class ProdutosController : ControllerBase
     {
         var produtos = await _context.Produtos
             .Include(p => p.Categoria)
-            .Where(p => p.Id == categoriaId)
+            .Where(p => p.Categoria.Id == categoriaId)
             .ToListAsync();
 
         var produtosDto = produtos.Select(p => MapToDto(p)).ToList();
@@ -91,7 +91,7 @@ public class ProdutosController : ControllerBase
         }
 
         // Atualizar propriedades
-        produto.Id = produtoDto.CategoriaId;
+        produto.Categoria.Id = produtoDto.CategoriaId;
         produto.Nome = produtoDto.Nome;
         produto.Descricao = produtoDto.Descricao;
         produto.Qtde = produtoDto.Qtde;
@@ -140,7 +140,7 @@ public class ProdutosController : ControllerBase
     {
         var produto = new Produto
         {
-            Id = produtoDto.CategoriaId,
+            CategoriaId = produtoDto.CategoriaId,
             Nome = produtoDto.Nome,
             Descricao = produtoDto.Descricao,
             Qtde = produtoDto.Qtde,
@@ -198,7 +198,7 @@ public class ProdutosController : ControllerBase
         return new ProdutoDto
         {
             Id = produto.Id,
-            CategoriaId = produto.Id,
+            CategoriaId = produto.Categoria.Id,
             Nome = produto.Nome,
             Descricao = produto.Descricao,
             Qtde = produto.Qtde,
