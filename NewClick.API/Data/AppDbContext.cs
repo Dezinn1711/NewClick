@@ -46,10 +46,10 @@ public class AppDbContext : IdentityDbContext<Usuario>
         List<Usuario> usuarios = [
             new Usuario(){
                 Id = "ddf093a6-6cb5-4ff7-9a64-83da34aee005",
-                Email = "lucas.theodosio@email.com",
-                NormalizedEmail = "LUCAS.THEODOSIO@EMAIL.COM",
-                UserName = "lucas.theodosio@email.com",
-                NormalizedUserName = "LUCAS.THEODOSIO@EMAIL.COM",
+                Email = "andreluiz@email.com",
+                NormalizedEmail = "ANDRELUIZ@EMAIL.COM",
+                UserName = "andreluiz@email.com",
+                NormalizedUserName = "ANDRELUIZ@EMAIL.COM",
                 LockoutEnabled = true,
                 EmailConfirmed = true,
                 Nome = "Lucas Theodosio",
